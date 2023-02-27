@@ -11,17 +11,23 @@ def compute_height(n, parents):
     # Your code here
     return max_height
 
-
 def main():
-    # implement input form keyboard and from files
-    
+    # implement input from keyboard and from files
+    modee = input()
+    if "I" in modee:
+        num = input()
+        print (num)
+    else:
+        with open("./test/01", mode="r") as fails:
+            text = fails.read()
+            print(text)
     # let user input file name to use, don't allow file names with letter a
     # account for github input inprecision
     
     # input number of elements
     # input values in one variable, separate with space, split these values in an array
     # call the function and output it's result
-    pass
+    #pass
 
 # In Python, the default limit on recursion depth is rather low,
 # so raise it here for this problem. Note that to take advantage
