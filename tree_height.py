@@ -12,13 +12,19 @@ def compute_height(n, parents):
     return max_height
 
 def main():
-    # implement input from keyboard and from files
-    modee = input()
+    modee = input("mode: ")
     if "I" in modee:
-        num = input()
-        print (num)
-    else:
-        with open("./test/01", mode="r") as fails:
+        text = input("T: ")
+        num = int(input("Num: "))
+        text = text.split() # default space = atdalītājs
+        text = map(int, text)
+        text = list(text)
+        print(text)
+        list(map(input().split()))
+        compute_height(num, text)
+    elif "F" in modee:
+        num = input("Num: ")
+        with open("./test/"+ num, mode="r") as fails:
             text = fails.read()
             print(text)
     # let user input file name to use, don't allow file names with letter a
@@ -37,3 +43,10 @@ threading.stack_size(2**27)   # new thread will get stack of such size
 threading.Thread(target=main).start()
 main()
 # print(numpy.array([1,2,3]))
+"""     num = int(input())
+        text = input()
+        text = map(int, text)
+        text = list(text)
+        print(text)
+        list(map(input().split()))
+        compute_height(num, text) """
