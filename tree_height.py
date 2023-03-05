@@ -4,16 +4,19 @@ import sys
 import threading
 import numpy
 
-def build_tree(root_node, nodes):
-    children = [
-        build_tree(child, nodes)
-        for child, node in enumerate(nodes)
-        if node == root_node
-    ]
-    return {'key': root_node, 'children': children}
+def get_height(parents):
+     depths = [-1] * len(parents)
 
-def compute_height(tree):
-    return 1 + max((compute_height(c) for c in tree['children']), default=-1)
+     def get_depth(i):
+         if i == -1:
+             return -1
+         if depths[i] == -1:
+             depths[i] = 1 + get_depth(parents[i])
+         return depths[i]
+
+     for i in range(len(parents)):
+         get_depth(i)
+     return max(depths)
   
 #def compute_height(n, parents):
     # Write this function
@@ -23,20 +26,21 @@ def compute_height(tree):
     
 
 def main():
-    modee = input("mode: ")
+    modee = input()
     if "I" in modee:
         int(input())
-        tree = build_tree(-1, list(map(int, input().split())))
-        print(compute_height(tree))
+        parents = (list(map(int, input().split())))
+        height = get_height(parents)
+        print(height)
     elif "F" in modee:
-        num = input("dok nr: ")
+        num = input()
         with open("./test/"+ num, mode="r") as fails:
             text = fails.read()
             x = text.splitlines()
             txt = x[1]
-            tree = build_tree(-1, list(map(int, txt.split())))
-            #tree = int (x[1])
-            print(compute_height(tree))
+            parents = (list(map(int, txt.split())))
+            height = get_height(parents)
+            print(height+1)
             
         # text = input("T: ")
         # text = text.split()
