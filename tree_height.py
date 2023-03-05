@@ -31,7 +31,7 @@ def main():
         int(input())
         parents = (list(map(int, input().split())))
         height = get_height(parents)
-        print(height)
+        print(height+1)
     elif "F" in modee:
         num = input()
         with open("./test/"+ num, mode="r") as fails:
