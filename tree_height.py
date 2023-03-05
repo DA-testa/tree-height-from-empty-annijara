@@ -4,43 +4,46 @@ import sys
 import threading
 import numpy
 
-def get_height(parents):
-     depths = [-1] * len(parents)
 
-     def get_depth(i):
-         if i == -1:
-             return -1
-         if depths[i] == -1:
-             depths[i] = 1 + get_depth(parents[i])
-         return depths[i]
-
-     for i in range(len(parents)):
-         get_depth(i)
-     return max(depths)
+def compute_height(n, parents):
+    length = [-1] * n
+    
+    def max_height(i):
+        if i == -1:
+            return -1
+         
+        if length[i] == -1:
+            length[i] = 1+ compute_height(parents[i])                      
+            return length[i]
+        
+        for i in range(n):
+            max_height(i)
+            return max(length)  
   
-#def compute_height(n, parents):
-    # Write this function
-    #max_height = 0
-    #return max_height
-    #pass
     
 
 def main():
-    modee = input()
-    if "I" in modee:
-        int(input())
-        parents = (list(map(int, input().split())))
-        height = get_height(parents)
+    option = input()
+    if "I" in option:
+        n = int(input())
+        text = input()
+        text = text.split()
+        parents = (list(map(int, text)))
+        
+        height = compute_height(n, parents)
         print(height+1)
-    elif "F" in modee:
+    
+    elif "F" in option:
         num = input()
-        with open("./test/"+ num, mode="r") as fails:
-            text = fails.read()
-            x = text.splitlines()
-            txt = x[1]
-            parents = (list(map(int, txt.split())))
-            height = get_height(parents)
-            print(height+1)
+        if num != "a":
+            with open("./test/"+ num, mode="r") as fails:
+                text = fails.read()
+                x = text.splitlines()
+                n = x[0]
+                txt = x[1].split()
+                parents = (list(map(int, txt)))
+                height = compute_height(n, parents)  
+                print(height+1)
             
         # text = input("T: ")
         # text = text.split()
@@ -54,7 +57,7 @@ def main():
     # input values in one variable, separate with space, split these values in an array
     # call the function and output it's result
     #pass
-
+   
 # In Python, the default limit on recursion depth is rather low,
 # so raise it here for this problem. Note that to take advantage
 # of bigger stack, we have to launch the computation in a new thread.
