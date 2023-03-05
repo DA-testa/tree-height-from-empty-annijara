@@ -5,7 +5,12 @@ import threading
 import numpy
 
 
-def compute_height(n, parents):
+def compute_height(parents):
+# Write this function
+    #max_height = 0
+# Your code here
+    #return max_height
+    n = len(parents)
     length = [-1] * n
     
     def max_height(i):
@@ -13,7 +18,7 @@ def compute_height(n, parents):
             return -1
          
         if length[i] == -1:
-            length[i] = 1+ compute_height(parents[i])                      
+            length[i] = 1 + compute_height(parents[i])                      
             return length[i]
         
         for i in range(n):
@@ -30,8 +35,8 @@ def main():
         text = text.split()
         parents = (list(map(int, text)))
         
-        height = compute_height(n, parents)
-        print(height+1)
+        height = (compute_height( parents))
+        print(height)
     
     elif "F" in option:
         num = input()
@@ -39,18 +44,19 @@ def main():
             with open("./test/"+ num, mode="r") as fails:
                 text = fails.read()
                 x = text.splitlines()
-                n = x[0]
+                #n = int(x[0])
                 txt = x[1].split()
                 parents = (list(map(int, txt)))
-                height = compute_height(n, parents)  
-                print(height+1)
+                height = (compute_height(parents))
+                print(height)
             
         # text = input("T: ")
         # text = text.split()
         # text = map(int, text)
         # text = list(text)
         # print (n, text) 
-        #list(map(input().split()))           
+        #list(map(input().split()))   
+            
     # let user input file name to use, don't allow file names with letter a
     # account for github input inprecision
     # input number of elements
