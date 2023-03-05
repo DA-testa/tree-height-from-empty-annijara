@@ -7,18 +7,18 @@ import numpy
 def compute_height(n, parents):
     length = [-1] * n
     
-    def max_height(i):
-        if i == -1:
-            return -1
-        if length[i] == -1:
-            length[i] = 1 + max_height(parents[i])
-        return length[i]
+    def max_height(l): 
+        if l == (-1):
+            return -1  
+        
+        if length[l] == (-1):
+            length[l] = 1 + max_height(parents[l])
+        return length[l]    
 
-    for i in range(n):
-        max_height(i)
+    for l in range(n):
+        max_height(l)
     return max(length)
   
-#def compute_height(n, parents):
     # Write this function
     #max_height = 0
     #return max_height
@@ -36,14 +36,15 @@ def main():
         print(height + 1)
     elif "F" in modee:
         num = input()
-        with open("./test/"+ num, mode="r") as fails:
-            text = fails.read()
-            x = text.splitlines()
-            n = int(x[0])
-            txt = x[1]
-            parents = (list(map(int, txt.split())))
-            height = compute_height(n, parents)
-            print(height + 1)
+        if num != "a":
+            with open("./test/"+ num, mode="r") as fails:
+                text = fails.read()
+                x = text.splitlines()
+                n = int(x[0])
+                txt = x[1]
+                parents = (list(map(int, txt.split())))
+                height = compute_height(n, parents)
+                print(height + 1)
             
         # text = input("T: ")
         # text = text.split()
