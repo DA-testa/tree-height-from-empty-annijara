@@ -32,11 +32,11 @@ def main():
         num = input("dok nr: ")
         with open("./test/"+ num, mode="r") as fails:
             text = fails.read()
-            print(text)
             x = text.splitlines()
-            n = x[0]
-            parent = x[1]
-            compute_height(n, parent)
+            txt = x[1]
+            tree = build_tree(-1, list(map(int, txt.split())))
+            #tree = int (x[1])
+            print(compute_height(tree))
             
         # text = input("T: ")
         # text = text.split()
